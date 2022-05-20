@@ -2,6 +2,7 @@
 #include "Employee.h"
 #include <iostream>
 
+#include "IOController.h"
 #include "List.h"
 
 using namespace std;
@@ -9,6 +10,11 @@ using namespace std;
 class employee_mapper
 {
 public:
+
+   employee_mapper()
+   {
+      this->database = io_controller();
+   }
 
    static employee* create()
    {
@@ -32,5 +38,9 @@ public:
    {
       // from file...
    }
+
+private:
+
+   io_controller database;
 
 };
