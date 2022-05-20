@@ -59,7 +59,7 @@ public:
       return this->experience_;
    }
 
-   string to_string() const
+   string to_formated_string() const
    {
       string dump =
          "Employee: {\n";
@@ -67,6 +67,16 @@ public:
       dump += "  age: " + std::to_string(this->age_) + ",\n";
       dump += "  experience: " + std::to_string(this->experience_) + ",\n";
       dump += "}";
+
+      return dump;
+   }
+
+   string to_string() const
+   {
+      string dump = "name:" + this->name_ + "|";
+      dump += "age:" + std::to_string(this->age_) + "|";
+      dump += "experience:" + std::to_string(this->experience_) + "|";
+      dump += "\n";
 
       return dump;
    }
