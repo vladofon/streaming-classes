@@ -110,6 +110,27 @@ public:
       }
    }
 
+   void edit(long index, T item) override
+   {
+      if (index == 0)
+      {
+         head->item = item;
+      }
+      else
+      {
+         Node* current = head;
+         long counter = 0;
+
+         while (counter < index)
+         {
+            current = current->pNext;
+            counter++;
+         }
+
+         current->item = item;
+      }
+   }
+
    void merge(List<T>* list) override
    {
       Node* lastElement = lastNode();
@@ -135,21 +156,6 @@ public:
       delete list;
    }
 
-   bool contains(T item) override
-   {
-      //Node* current = head;
-
-      //while (current->pNext != nullptr)
-      //{
-      //   if (current->item == item)
-      //   {
-      //      return true;
-      //   }
-      //   current = current->pNext;
-      //}
-
-      //return false;
-   }
 
    T* toArray() override
    {
