@@ -13,6 +13,7 @@ class io_controller
 public:
    static void save(const string& data, const string& filename)
    {
+      // ios::app - save without rewriting
       fstream fout(filename, ios::app);
 
       if (fout.is_open())
@@ -25,6 +26,7 @@ public:
 
    static void rewrite(const string& data, const string& filename)
    {
+      // ios::out - save with rewriting
       fstream fout(filename, ios::out);
 
       if (fout.is_open())
@@ -75,6 +77,7 @@ public:
 
 private:
 
+   // Append all lines into one string
    static string append(List<string>* lines)
    {
       string new_file;

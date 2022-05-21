@@ -16,6 +16,7 @@ public:
       this->connection_ = io_controller();
    }
 
+   /* Optional method. You can use only [io_controller::save] */
    static employee* create()
    {
       string name;
@@ -31,9 +32,12 @@ public:
       object->set_age(age);
       object->set_experience(experience);
 
+      io_controller::save(object->to_string(), "db.txt");
+
       return object;
    }
 
+   // Mapping data, retrieved from the file, to list of objects
    List<employee*>* map_all(const string& path = "db.txt") const
    {
       const auto data = io_controller::retrieve(path);
