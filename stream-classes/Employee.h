@@ -73,9 +73,9 @@ public:
 
    string to_string() const
    {
-      string dump = "name:" + this->name_ + "|";
-      dump += "age:" + std::to_string(this->age_) + "|";
-      dump += "experience:" + std::to_string(this->experience_) + "|";
+      string dump = this->name_ + ":";
+      dump += std::to_string(this->age_) + ":";
+      dump += std::to_string(this->experience_) + ":";
       dump += "\n";
 
       return dump;
