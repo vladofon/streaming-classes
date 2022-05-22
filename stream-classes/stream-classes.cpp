@@ -30,6 +30,7 @@ int main()
    // Map and print data from file
    const auto to_print = mapper.map_all();
 
+   cout << endl;
    while (to_print->getSize() != 0)
    {
       cout << to_print->get(0)->to_formated_string() << endl;

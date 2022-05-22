@@ -21,6 +21,8 @@ public:
          fout << data;
       }
 
+      cout << "File UPDATED. Current file size: " << fout.tellg() << endl;
+
       fout.close();
    }
 
@@ -33,6 +35,8 @@ public:
       {
          fout << data;
       }
+
+      cout << "File REWRITED. Current file size: " << fout.tellg() << endl;
 
       fout.close();
    }
@@ -51,6 +55,8 @@ public:
             lines->add(line);
          }
       }
+
+      cout << "File data RETRIEVED. Current file size: " << get_file_size(filename) << endl;
 
       fin.close();
 
@@ -87,5 +93,11 @@ private:
       }
 
       return new_file;
+   }
+
+   static long long get_file_size(const string& filename)
+   {
+      ifstream file(filename, ios::binary | ios::ate);
+      return file.tellg();
    }
 };
