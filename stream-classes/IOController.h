@@ -5,20 +5,24 @@
 
 #include "LinkedList.h"
 #include "List.h"
+#include "Manipulator.h"
 
 using namespace std;
 
 class io_controller
 {
 public:
-   static void save(const string& data, const string& filename)
+   static void save(List<string>* lines, const string& filename)
    {
       // ios::app - save without rewriting
       fstream fout(filename, ios::app);
 
       if (fout.is_open())
       {
-         fout << data;
+         for (int i = 0; i < lines->getSize(); i++)
+         {
+            fout << lines->get(i) << SEP;
+         }
       }
 
       cout << "File UPDATED. Current file size: " << fout.tellg() << endl;
@@ -26,14 +30,32 @@ public:
       fout.close();
    }
 
-   static void rewrite(const string& data, const string& filename)
+   static void save(const string& line, const string& filename)
+   {
+      // ios::app - save without rewriting
+      fstream fout(filename, ios::app);
+
+      if (fout.is_open())
+      {
+         fout << line << SEP;
+      }
+
+      cout << "File UPDATED. Current file size: " << fout.tellg() << endl;
+
+      fout.close();
+   }
+
+   static void rewrite(List<string>* lines, const string& filename)
    {
       // ios::out - save with rewriting
       fstream fout(filename, ios::out);
 
       if (fout.is_open())
       {
-         fout << data;
+         for (int i = 0; i < lines->getSize(); i++)
+         {
+            fout << lines->get(i) << SEP;
+         }
       }
 
       cout << "File REWRITED. Current file size: " << fout.tellg() << endl;
@@ -69,7 +91,7 @@ public:
 
       lines->remove(index);
 
-      rewrite(append(lines), filename);
+      rewrite(lines, filename);
    }
 
    static void update(const int index, const employee* object, const string& filename)
@@ -78,7 +100,7 @@ public:
 
       lines->edit(index, object->to_string());
 
-      rewrite(append(lines), filename);
+      rewrite(lines, filename);
    }
 
 private:
